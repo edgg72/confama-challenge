@@ -1,45 +1,62 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Typography, AppBar, Card, Button, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core'
-import TopBar from './components/TopBar/TopBar';
-import Cards from './components/Cards/Cards'
+import { Typography, Button,  CssBaseline, Grid, Container } from '@material-ui/core'
+import instance from './axiosInstance';
 import { useStyles } from './styles';
 
 
+import TopBar from './components/TopBar/TopBar';
+import Cards from './components/Cards/Cards';
+import Footer from './components/Footer/Footer';
+import MainSection from './components/MainSection/MainSection';
+import Slider from './components/Slider/Slider';
+
 function App() {
+  const [requestList, setRequestList] = useState([]);
+  const [input, setInput] = useState('');
+  const [view, setView] = useState('slides');
+
+
+    async function fetchData(input){
+      const request = await instance.get(`/search/anime?q=${input}`);
+      setRequestList(request.data.results);
+      return request;
+    }
+
+    const viewButtonHandler = () => {
+      if ( view === 'grid' ) {
+        setView('slides')
+      } else if ( view === 'slides' ) {
+        setView('grid')
+      }
+    }
+
+
 
   const classes = useStyles();
 
   return (
     <>
       <CssBaseline />
-      <TopBar/>   {/* TopBar Component, the bar at the top  */}
-      <main>
-        <div className={classes.container} >
-          <Container maxWidth="sm" >
-            <Typography variant="h2" align="center" color="textPrimary" gutterBottom >
-              Welcome to SeekAnime
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph >
-              Hello everyone, this is an anime search website and I'm trying to make this sentence as long as possible so we can see how does it look like on the screen
-            </Typography>
-            <div className={classes.button} >
-              <Grid container spacing={2} justify="center" >
-                <Grid item >
-                  <Button variant="contained" color="primary" >
-                    See the best anime
-                  </Button>
-                </Grid>
-                <Grid item >
-                  <Button variant="outlined" color="primary" >
-                    Secondary action
-                  </Button>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
-        <Cards /> {/* Cards Component, all the cards mapped */}
+      <TopBar />   {/* TopBar Component, the bar at the top  */}
+      <main className={classes.main}>
+        <MainSection setInput={setInput} input={input} f={fetchData} />
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={viewButtonHandler}
+        >
+          {view}
+        </Button>
+        {/* selecting what kind of view to display */}
+        { view === 'slides' ? (
+          <Cards results={requestList}/>
+        ) : (
+          <Slider results={requestList} />
+        )}
       </main>
+      <Footer />  {/* Footer component  */}
     </>
   )
 }
