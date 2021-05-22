@@ -7,10 +7,12 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     position: 'relative',
     padding: '0',
-    margin: '0'
+    margin: '0',
+
   },
   logoText:{
     fontFamily: 'Signika',
-    fontSize: '6.5vw'
+    fontSize: '6.5vw',
+    pointerEvents: 'none'
   }
 }));

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { Typography, Button,  CssBaseline, Grid, Container } from '@material-ui/core'
+import { Button,  CssBaseline } from '@material-ui/core'
 import instance from './axiosInstance';
 import { useStyles } from './styles';
 
 
-import TopBar from './components/TopBar/TopBar';
+import TopBar from './components/Layout/TopBar/TopBar';
 import Cards from './components/Cards/Cards';
-import Footer from './components/Footer/Footer';
-import MainSection from './components/MainSection/MainSection';
+import Footer from './components/Layout/Footer/Footer';
+import MainSection from './components/Layout/MainSection/MainSection';
 import Slider from './components/Slider/Slider';
 
 function App() {

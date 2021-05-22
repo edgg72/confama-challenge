@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, AppBar, Toolbar } from '@material-ui/core';
-import LogoComponent from '../LogoComponent/LogoComponent';
+import LogoComponent from '../../LogoComponent/LogoComponent';
 
 
 const TopBar = () => {
