@@ -14,17 +14,17 @@ const Footer = () => {
       <ul className={classes.socialList}>
             <li className={classes.socialList__item}>
                 <a href="https://www.linkedin.com/in/edgg72/" className={classes.socialList__item__link}>
-                    <i class="fab fa-linkedin fa-2x"></i>
+                    <i className="fab fa-linkedin fa-2x"></i>
                 </a>
             </li>
             <li className={classes.socialList__item}>
                 <a href="https://twitter.com/edgg72" className={classes.socialList__item__link}>
-                    <i class="fab fa-github-square fa-2x"></i>
+                    <i className="fab fa-github-square fa-2x"></i>
                 </a>
             </li>
             <li className={classes.socialList__item}>
                 <a href="https://github.com/edgg72" className={classes.socialList__item__link}>
-                    <i class="fab fa-twitter-square fa-2x"></i>
+                    <i className="fab fa-twitter-square fa-2x"></i>
                 </a>
             </li>
         </ul>

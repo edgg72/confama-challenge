@@ -9,7 +9,7 @@ export const useStyles = makeStyles({
   },
   searchInput: {
     margin: '15px 10px 15px 10px',
-    width: '60%'
+    width: '65%'
   },
   searchIcon: {
     color: '#3f51b5',

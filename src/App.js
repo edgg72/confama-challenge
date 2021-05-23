@@ -1,63 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import { Button,  CssBaseline } from '@material-ui/core'
-import instance from './axiosInstance';
-import { useStyles } from './styles';
+import Home from './components/Home/Home';
+import AnimeDetail from './components/AnimeDetail/AnimeDetail'
 
-
-import TopBar from './components/Layout/TopBar/TopBar';
-import Cards from './components/Cards/Cards';
-import Footer from './components/Layout/Footer/Footer';
-import MainSection from './components/Layout/MainSection/MainSection';
-import Slider from './components/Slider/Slider';
 
 function App() {
-  const [requestList, setRequestList] = useState([]);
-  const [input, setInput] = useState('');
-  const [view, setView] = useState('slides');
-
-
-    async function fetchData(input){
-      const request = await instance.get(`/search/anime?q=${input}`);
-      setRequestList(request.data.results);
-      return request;
-    }
-
-    const viewButtonHandler = () => {
-      if ( view === 'grid' ) {
-        setView('slides')
-      } else if ( view === 'slides' ) {
-        setView('grid')
-      }
-    }
-
-
-
-  const classes = useStyles();
-
-  return (
-    <>
-      <CssBaseline />
-      <TopBar />   {/* TopBar Component, the bar at the top  */}
-      <main className={classes.main}>
-        <MainSection setInput={setInput} input={input} f={fetchData} />
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          onClick={viewButtonHandler}
-        >
-          {view}
-        </Button>
-        {/* selecting what kind of view to display */}
-        { view === 'slides' ? (
-          <Cards results={requestList}/>
-        ) : (
-          <Slider results={requestList} />
-        )}
-      </main>
-      <Footer />  {/* Footer component  */}
-    </>
+  return(
+  <Router>
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/animedetail" exact component={AnimeDetail} />
+    </Switch>
+  </Router>
   )
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Typography, Card, Button, CardActions, CardContent, CardMedia,  Grid } from '@material-ui/core'
+import { Typography, Card, CardContent, CardMedia,  Grid } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 import { useStyles } from './styles';
 
-const CardComponent = ({ title, image_url, score }) => {
+const CardComponent = ({ title, image_url, score, synopsis }) => {
 
   let message;
 
@@ -19,7 +20,16 @@ const CardComponent = ({ title, image_url, score }) => {
     return (
 
       <Grid item xs={12} sm={6} md={4} >
-        <Card raised elevation={6} className={classes.card} >
+        <Link to={{
+          pathname: "/animedetail",
+          props: {
+            title: title,
+            image_url: image_url,
+            score: score,
+            synopsis: synopsis
+          }
+        }} style={{ textDecoration: 'none' }} >
+        <Card raised elevation={6} className={classes.card}>
           <CardMedia
             className={classes.cardMedia}
             image={image_url}
@@ -36,6 +46,7 @@ const CardComponent = ({ title, image_url, score }) => {
             </Typography>
           </CardContent>
         </Card>
+        </Link>
       </Grid>
   )
 }

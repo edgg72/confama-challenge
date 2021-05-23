@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import LogoComponent from '../../LogoComponent/LogoComponent';
 
 
