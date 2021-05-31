@@ -16,9 +16,16 @@ const Home = () => {
   const [initialPress, setInitialPress] = useState(null);
 
     async function fetchData(input){
-      const request = await instance.get(`/search/anime?q=${input}`);
-      setRequestList(request.data.results);
-      return request;
+      try{
+        const request = await instance.get(`/search/anime?q=${input}`)
+        setRequestList(request.data.results);
+        return request;
+      } catch (e) {
+        console.log(`This error has occurred: ${e}`)
+        alert("Sorry, that didn't get any titles");
+
+      }
+
     }
 
     const viewButtonHandler = () => {
@@ -46,6 +53,7 @@ const Home = () => {
         >
           {view}
         </Button>
+
         {/* selecting what kind of view to display */}
         { view === 'grid' && initialPress !== null  ? (
           <Slider  results={requestList} />
